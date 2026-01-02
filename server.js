@@ -19,17 +19,28 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 // Initialize Database
-const db = new sqlite3.Database('./hospital.db', (err) => {
+// Use /tmp directory on Vercel (serverless), otherwise use local file
+const dbPath = process.env.VERCEL === '1' 
+  ? '/tmp/hospital.db' 
+  : './hospital.db';
+
+const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Error opening database:', err.message);
+    console.error('Database path:', dbPath);
+    console.error('Full error:', err);
   } else {
-    console.log('Connected to SQLite database');
+    console.log('Connected to SQLite database at:', dbPath);
     initializeDatabase();
   }
 });
 
+// Database ready flag
+let dbReady = false;
+
 // Initialize Database Tables
 function initializeDatabase() {
+  console.log('🔄 Initializing database tables...');
   // Patients table
   db.run(`CREATE TABLE IF NOT EXISTS patients (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -264,7 +275,14 @@ function initializeDatabase() {
     });
     
     // Create index for faster conversation lookups
-    db.run(`CREATE INDEX IF NOT EXISTS idx_conversation_id ON messages(conversation_id)`);
+    db.run(`CREATE INDEX IF NOT EXISTS idx_conversation_id ON messages(conversation_id)`, (err) => {
+      if (err) {
+        console.error('Error creating index:', err);
+      } else {
+        dbReady = true;
+        console.log('✅ Database initialization complete');
+      }
+    });
   });
 }
 
@@ -278,20 +296,52 @@ function generatePatientID() {
 
 // API Routes
 
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  db.get('SELECT 1 as test', (err, row) => {
+    if (err) {
+      return res.status(500).json({ 
+        healthy: false, 
+        error: 'Database connection failed',
+        details: err.message,
+        dbPath: dbPath
+      });
+    }
+    res.json({ 
+      healthy: true, 
+      dbReady: dbReady,
+      dbPath: dbPath,
+      vercel: process.env.VERCEL === '1'
+    });
+  });
+});
+
 // Authentication
 app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
   
+  if (!username || !password) {
+    return res.status(400).json({ success: false, error: 'Username and password are required' });
+  }
+  
   db.get('SELECT * FROM admins WHERE username = ?', [username], (err, admin) => {
     if (err) {
-      return res.status(500).json({ error: 'Database error' });
+      console.error('❌ Database error during login:', err);
+      console.error('   Error code:', err.code);
+      console.error('   Error message:', err.message);
+      return res.status(500).json({ success: false, error: 'Database error', details: err.message });
     }
     
     if (!admin || !bcrypt.compareSync(password, admin.password)) {
       return res.status(401).json({ success: false, error: 'Invalid credentials' });
     }
     
-    res.cookie('authToken', 'authenticated', { httpOnly: true, maxAge: 86400000 });
+    res.cookie('authToken', 'authenticated', { 
+      httpOnly: true, 
+      maxAge: 86400000,
+      sameSite: 'none',
+      secure: process.env.VERCEL === '1' // Use secure cookies on Vercel (HTTPS)
+    });
     res.json({ success: true, message: 'Login successful', token: 'authenticated' });
   });
 });
@@ -533,7 +583,10 @@ app.post('/api/messages', (req, res) => {
     [convId, name.trim(), email, message.trim(), 'patient'],
     function(err) {
       if (err) {
-        return res.status(500).json({ success: false, error: 'Failed to send message' });
+        console.error('❌ Database error saving message:', err);
+        console.error('   Error code:', err.code);
+        console.error('   Error message:', err.message);
+        return res.status(500).json({ success: false, error: 'Failed to send message', details: err.message });
       }
       
       const messageId = this.lastID;
@@ -541,7 +594,6 @@ app.post('/api/messages', (req, res) => {
       console.log(`📝 New message saved - Conversation ID: ${convId}`);
       console.log(`   Patient: ${name} (Age: ${age})`);
       console.log(`   Message: ${message.substring(0, 50)}...`);
-      console.log(`   💡 Doctor can reply at: http://localhost:3000/admin.html`);
       
       res.json({ 
         success: true, 
