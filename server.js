@@ -641,26 +641,40 @@ app.post('/api/test-reply', (req, res) => {
     return res.status(400).json({ success: false, error: 'conversation_id and message are required' });
   }
   
+  if (!message.trim()) {
+    return res.status(400).json({ success: false, error: 'Message cannot be empty' });
+  }
+  
+  // Get hospital email from config or use default
+  const hospitalEmail = (config && config.HOSPITAL_EMAIL) || 'doctor@hospital.com';
+  
   // Verify conversation exists
   db.get('SELECT * FROM messages WHERE conversation_id = ? LIMIT 1', [conversation_id], (err, exists) => {
     if (err) {
-      return res.status(500).json({ success: false, error: 'Database error' });
+      console.error('❌ Database error checking conversation:', err);
+      console.error('   Error code:', err.code);
+      console.error('   Error message:', err.message);
+      return res.status(500).json({ success: false, error: 'Database error', details: err.message });
     }
     
     if (!exists) {
+      console.error(`❌ Conversation not found: ${conversation_id}`);
       return res.status(404).json({ success: false, error: 'Conversation not found' });
     }
     
     // Save the reply
     db.run(
       'INSERT INTO messages (conversation_id, name, email, message, sender_type, status) VALUES (?, ?, ?, ?, ?, ?)',
-      [conversation_id, 'Doctor', config.HOSPITAL_EMAIL, message.trim(), 'doctor', 'read'],
+      [conversation_id, 'Doctor', hospitalEmail, message.trim(), 'doctor', 'read'],
       function(err) {
         if (err) {
-          console.error('Error saving manual reply:', err);
-          return res.status(500).json({ success: false, error: 'Failed to save reply' });
+          console.error('❌ Error saving doctor reply:', err);
+          console.error('   Error code:', err.code);
+          console.error('   Error message:', err.message);
+          console.error('   Conversation ID:', conversation_id);
+          return res.status(500).json({ success: false, error: 'Failed to save reply', details: err.message });
         }
-        console.log(`✅ Manual reply saved for conversation ${conversation_id} (ID: ${this.lastID})`);
+        console.log(`✅ Doctor reply saved for conversation ${conversation_id} (ID: ${this.lastID})`);
         res.json({ success: true, message_id: this.lastID, message: 'Reply saved successfully' });
       }
     );

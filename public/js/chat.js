@@ -408,7 +408,7 @@ async function sendDirectReply(event) {
   }
   
   try {
-      showNotification('Sending...', 'success');
+    showNotification('Sending...', 'success');
     
     const response = await fetch('/api/test-reply', {
       method: 'POST',
@@ -421,6 +421,13 @@ async function sendDirectReply(event) {
     
     const data = await response.json();
     
+    if (!response.ok) {
+      const errorMsg = data.error || data.details || 'Failed to send reply';
+      console.error('Reply error:', errorMsg);
+      showNotification(errorMsg, 'error');
+      return;
+    }
+    
     if (data.success) {
       showNotification('Sent', 'success');
       if (replyTextarea) replyTextarea.value = '';
@@ -428,11 +435,12 @@ async function sendDirectReply(event) {
       loadMessages();
       loadConversationDetails(conversationId);
     } else {
-      showNotification('Failed', 'error');
+      const errorMsg = data.error || 'Failed to send reply';
+      showNotification(errorMsg, 'error');
     }
   } catch (error) {
-    showNotification('Error', 'error');
-    console.error('Error:', error);
+    console.error('Error sending reply:', error);
+    showNotification('Network error', 'error');
   }
 }
 
@@ -470,6 +478,14 @@ async function addManualReply() {
     });
     
     const data = await response.json();
+    
+    if (!response.ok) {
+      const errorMsg = data.error || data.details || 'Failed to save reply';
+      console.error('Reply error:', errorMsg);
+      showNotification(errorMsg, 'error');
+      return;
+    }
+    
     if (data.success) {
       showNotification('Saved', 'success');
       if (replyTextarea) replyTextarea.value = '';
@@ -478,11 +494,12 @@ async function addManualReply() {
       loadMessages();
       loadConversationDetails(conversationId);
     } else {
-      showNotification('Failed', 'error');
+      const errorMsg = data.error || 'Failed to save reply';
+      showNotification(errorMsg, 'error');
     }
   } catch (error) {
     console.error('Error saving manual reply:', error);
-    showNotification('Error', 'error');
+    showNotification('Network error', 'error');
   }
 }
 
