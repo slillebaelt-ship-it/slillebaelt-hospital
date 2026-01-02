@@ -53,14 +53,21 @@ nav {
   background: none;
   border: none;
   color: var(--white);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   cursor: pointer;
   padding: 0.5rem;
   z-index: 1001;
+  line-height: 1;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
 }
 
 .menu-toggle:hover {
   opacity: 0.8;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
 }
 
 .logo {
@@ -724,7 +731,7 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
   .menu-toggle {
-    display: block;
+    display: flex !important;
   }
   
   .nav-links {

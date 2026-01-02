@@ -198,7 +198,9 @@ function initMobileMenu() {
   const navLinks = document.querySelector('.nav-links');
   
   if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
+    menuToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
       navLinks.classList.toggle('active');
       // Change icon
       if (navLinks.classList.contains('active')) {
@@ -208,11 +210,13 @@ function initMobileMenu() {
       }
     });
     
-    // Close menu when clicking outside
+    // Close menu when clicking outside (with delay to avoid conflicts)
     document.addEventListener('click', (e) => {
-      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        navLinks.classList.remove('active');
-        menuToggle.innerHTML = '☰';
+      if (navLinks.classList.contains('active')) {
+        if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+          navLinks.classList.remove('active');
+          menuToggle.innerHTML = '☰';
+        }
       }
     });
     
@@ -223,6 +227,8 @@ function initMobileMenu() {
         menuToggle.innerHTML = '☰';
       });
     });
+  } else {
+    console.log('Menu toggle elements not found:', { menuToggle, navLinks });
   }
 }
 
