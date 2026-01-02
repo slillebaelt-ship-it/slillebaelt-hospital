@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="hospitalName">sygehuzbaelt</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" data-translate="hospitalName">sygehuzbaelt</a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-translate="home">Home</a></li>
+                <li><a href="about.html" data-translate="about">About Us</a></li>
+                <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                <li><a href="chat.html">Support Center</a></li>
+                <li class="language-switcher">
+                    <select id="languageSwitcher">
+                        <option value="en">English</option>
+                        <option value="da">Dansk</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Landing Section -->
+        <section class="hero" style="background-image: linear-gradient(rgba(0, 102, 204, 0.75), rgba(0, 68, 153, 0.75)), url('images/hero-bg.jpg'); background-size: cover; background-position: center;">
+            <div class="hero-content">
+                <h1 data-translate="welcome">Welcome to sygehuzbaelt</h1>
+                <p class="hero-subtitle" data-translate="tagline">Caring for Your Health, Caring for You</p>
+                <p class="hero-description">Your trusted healthcare partner providing world-class medical services with compassion and excellence</p>
+                <div class="hero-buttons">
+                    <a href="appointment.html" class="btn btn-primary btn-large" data-translate="bookAppointment">Book Appointment</a>
+                    <a href="contact.html" class="btn btn-secondary btn-large">💬 Send Message</a>
+                </div>
+                <div class="hero-features">
+                    <div class="hero-feature-item">
+                        <span class="feature-icon">🏥</span>
+                        <span>30+ Years Experience</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <span class="feature-icon">👨‍⚕️</span>
+                        <span>Expert Doctors</span>
+                    </div>
+                    <div class="hero-feature-item">
+                        <span class="feature-icon">🚑</span>
+                        <span>24/7 Emergency</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Stats Section -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" id="statPatients">0</div>
+                        <div class="stat-label" data-translate="totalPatients">Total Patients</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="statDoctors">0</div>
+                        <div class="stat-label" data-translate="totalDoctors">Expert Doctors</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" id="statDepartments">6</div>
+                        <div class="stat-label" data-translate="departments">Departments</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label" data-translate="emergency">Emergency Service</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="section" style="background: var(--white);">
+            <div class="container">
+                <h2 class="section-title">Why Choose sygehuzbaelt?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon-large">🏥</div>
+                        <h3>State-of-the-Art Facilities</h3>
+                        <p>Modern medical equipment and advanced technology for accurate diagnosis and effective treatment.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-large">👨‍⚕️</div>
+                        <h3>Expert Medical Team</h3>
+                        <p>Experienced doctors and healthcare professionals dedicated to your well-being and recovery.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-large">❤️</div>
+                        <h3>Compassionate Care</h3>
+                        <p>Patient-centered approach ensuring you receive personalized attention and care throughout your journey.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-large">⚡</div>
+                        <h3>Quick Service</h3>
+                        <p>Efficient processes and minimal waiting times for consultations, tests, and treatments.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-large">🌐</div>
+                        <h3>Multi-Language Support</h3>
+                        <p>Services available in English and Danish to serve our diverse community better.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon-large">📱</div>
+                        <h3>Easy Online Booking</h3>
+                        <p>Book appointments online anytime, anywhere with our convenient booking system.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section" style="background: var(--light-blue);">
+            <div class="container">
+                <div class="about-landing">
+                    <div class="about-image">
+                        <img src="images/hospital-building.jpg" alt="sygehuzbaelt Building" style="width: 100%; border-radius: 12px; box-shadow: 0 8px 20px rgba(0,0,0,0.15);">
+                    </div>
+                    <div class="about-content">
+                        <h2 data-translate="aboutTitle">About Our Hospital</h2>
+                        <p data-translate="overviewText" style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem;">We are a leading healthcare institution dedicated to providing exceptional medical care to our community. With state-of-the-art facilities and a team of experienced healthcare professionals, we strive to deliver the highest quality of patient care.</p>
+                        <div class="about-highlights">
+                            <div class="highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>30+ Years of Excellence</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>Advanced Medical Technology</span>
+                            </div>
+                            <div class="highlight-item">
+                                <span class="highlight-icon">✓</span>
+                                <span>Patient-Centered Care</span>
+                            </div>
+                        </div>
+                        <a href="about.html" class="btn btn-primary" style="margin-top: 1.5rem;">Learn More About Us</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services/Departments Section -->
+        <section class="section" style="background: var(--white);">
+            <div class="container">
+                <h2 class="section-title" data-translate="departmentsTitle">Our Medical Departments</h2>
+                <p class="section-subtitle" style="text-align: center; color: var(--gray); margin-bottom: 3rem; font-size: 1.1rem;">Comprehensive healthcare services across all major specialties</p>
+                <div class="card-grid">
+                    <div class="card department-card">
+                        <img src="images/department-opd.jpg" alt="Outpatient Department" class="department-image">
+                        <h3 data-translate="opd">Outpatient Department (OPD)</h3>
+                        <p data-translate="opdDesc">General consultations and follow-up visits</p>
+                        <a href="departments.html" class="btn btn-secondary" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Learn More</a>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-pharmacy.jpg" alt="Pharmacy" class="department-image">
+                        <h3 data-translate="pharmacy">Pharmacy</h3>
+                        <p data-translate="pharmacyDesc">Complete range of medications and prescriptions</p>
+                        <a href="departments.html" class="btn btn-secondary" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Learn More</a>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-laboratory.jpg" alt="Laboratory" class="department-image">
+                        <h3 data-translate="laboratory">Laboratory</h3>
+                        <p data-translate="laboratoryDesc">Advanced diagnostic and testing services</p>
+                        <a href="departments.html" class="btn btn-secondary" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Learn More</a>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-maternity.jpg" alt="Maternity Department" class="department-image">
+                        <h3 data-translate="maternity">Maternity</h3>
+                        <p data-translate="maternityDesc">Comprehensive maternal and newborn care</p>
+                        <a href="departments.html" class="btn btn-secondary" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Learn More</a>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-emergency.jpg" alt="Emergency Department" class="department-image">
+                        <h3 data-translate="emergency">Emergency</h3>
+                        <p data-translate="emergencyDesc">24/7 emergency medical services</p>
+                        <a href="departments.html" class="btn btn-secondary" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Learn More</a>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-surgery.jpg" alt="Surgery Department" class="department-image">
+                        <h3 data-translate="surgery">Surgery</h3>
+                        <p data-translate="surgeryDesc">Advanced surgical procedures and operations</p>
+                        <a href="departments.html" class="btn btn-secondary" style="margin-top: 1rem; padding: 0.5rem 1.5rem;">Learn More</a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="departments.html" class="btn btn-primary btn-large" data-translate="viewDepartments">View All Departments</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Get Started?</h2>
+                    <p>Book your appointment or send us a message</p>
+                    <div class="cta-buttons">
+                        <a href="appointment.html" class="btn btn-primary btn-large" data-translate="bookAppointment">Book Appointment</a>
+                        <a href="contact.html" class="btn btn-secondary btn-large">💬 Send Message</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Section -->
+        <section class="section">
+            <div class="container">
+                <div class="card" style="background: linear-gradient(135deg, var(--error) 0%, #c82333 100%); color: white; text-align: center; padding: 3rem 2rem;">
+                    <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;" data-translate="emergency">🚑 Emergency Services</h2>
+                    <p style="font-size: 1.3rem; margin: 1rem 0; opacity: 0.95;" data-translate="emergencyText">24/7 Emergency Services Available</p>
+                    <p style="font-size: 1.1rem; margin: 1.5rem 0; opacity: 0.9;">For life-threatening emergencies, call immediately</p>
+                    <a href="tel:+453055477036" class="btn" style="background: white; color: var(--error); font-size: 1.2rem; padding: 1rem 2.5rem; font-weight: bold;">📞 Call Emergency: +45 30 55 47 70 36</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> <span data-translate="hospitalName">sygehuzbaelt</span>. <span data-translate="allRightsReserved">All rights reserved.</span></p>
+        <a href="admin.html" class="admin-access" title="Doctor Login">⚕️</a>
+    </footer>
+
+    <a href="tel:+453055477036" class="emergency-btn" data-translate="emergency">🚑 Emergency</a>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Animate stats on page load
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fetch stats from API
+            try {
+                const response = await fetch('/api/stats');
+                const stats = await response.json();
+                
+                // Animate numbers
+                function animateValue(id, start, end, duration) {
+                    let startTimestamp = null;
+                    const step = (timestamp) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        const current = Math.floor(progress * (end - start) + start);
+                        document.getElementById(id).textContent = current;
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    };
+                    window.requestAnimationFrame(step);
+                }
+                
+                if (stats.totalPatients) {
+                    animateValue('statPatients', 0, stats.totalPatients, 2000);
+                }
+                if (stats.totalDoctors) {
+                    animateValue('statDoctors', 0, stats.totalDoctors, 2000);
+                }
+            } catch (error) {
+                console.error('Error loading stats:', error);
+            }
+        });
+    </script>
+</body>
+</html>
+

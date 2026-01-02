@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="bookAppointmentTitle">Book Appointment - sygehuzbaelt</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" data-translate="hospitalName">sygehuzbaelt</a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-translate="home">Home</a></li>
+                <li><a href="about.html" data-translate="about">About Us</a></li>
+                <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                <li class="language-switcher">
+                    <select id="languageSwitcher">
+                        <option value="en">English</option>
+                        <option value="da">Dansk</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: linear-gradient(rgba(0, 102, 204, 0.75), rgba(0, 68, 153, 0.75)), url('images/hospital-building.jpg'); background-size: cover; background-position: center;">
+            <div class="hero-content">
+                <h1 data-translate="bookAppointmentTitle">Book an Appointment</h1>
+                <p class="hero-subtitle">Schedule your visit with our expert medical team</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="form-container">
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <label for="appointmentPatientId" data-translate="patientId">Patient ID (Optional)</label>
+                            <input type="text" id="appointmentPatientId" name="patient_id" placeholder="Leave empty if not registered">
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentName" data-translate="name">Name</label>
+                            <input type="text" id="appointmentName" name="patient_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentPhone" data-translate="phoneNumber">Phone Number</label>
+                            <input type="tel" id="appointmentPhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentDepartment" data-translate="department">Department</label>
+                            <select id="appointmentDepartment" name="department" required>
+                                <option value="">Select Department</option>
+                                <option value="OPD" data-translate="opd">OPD</option>
+                                <option value="Pharmacy" data-translate="pharmacy">Pharmacy</option>
+                                <option value="Laboratory" data-translate="laboratory">Laboratory</option>
+                                <option value="Maternity" data-translate="maternity">Maternity</option>
+                                <option value="Emergency" data-translate="emergency">Emergency</option>
+                                <option value="Surgery" data-translate="surgery">Surgery</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentDoctor" data-translate="doctorName">Doctor Name (Optional)</label>
+                            <input type="text" id="appointmentDoctor" name="doctor_name" placeholder="Leave empty if no preference">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="appointmentDate" data-translate="appointmentDate">Appointment Date</label>
+                                <input type="date" id="appointmentDate" name="appointment_date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentTime" data-translate="appointmentTime">Appointment Time</label>
+                                <input type="time" id="appointmentTime" name="appointment_time" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentNotes" data-translate="notes">Notes (Optional)</label>
+                            <textarea id="appointmentNotes" name="notes" rows="3" placeholder="Any additional information..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="bookAppointment">Book Appointment</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> <span data-translate="hospitalName">sygehuzbaelt</span>. <span data-translate="allRightsReserved">All rights reserved.</span></p>
+        <a href="admin.html" class="admin-access" title="Doctor Login">⚕️</a>
+    </footer>
+
+    <a href="tel:+453055477036" class="emergency-btn" data-translate="emergency">🚑 Emergency</a>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('appointmentDate').setAttribute('min', today);
+            
+            const form = document.getElementById('appointmentForm');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = {
+                    patient_id: document.getElementById('appointmentPatientId').value || '',
+                    patient_name: document.getElementById('appointmentName').value,
+                    phone: document.getElementById('appointmentPhone').value,
+                    department: document.getElementById('appointmentDepartment').value,
+                    doctor_name: document.getElementById('appointmentDoctor').value || '',
+                    appointment_date: document.getElementById('appointmentDate').value,
+                    appointment_time: document.getElementById('appointmentTime').value,
+                    notes: document.getElementById('appointmentNotes').value || ''
+                };
+                
+                try {
+                    await bookAppointment(formData);
+                    form.reset();
+                    document.getElementById('appointmentDate').setAttribute('min', today);
+                } catch (error) {
+                    console.error('Appointment booking error:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

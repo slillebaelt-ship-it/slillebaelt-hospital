@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="departmentsTitle">Departments - sygehuzbaelt</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" data-translate="hospitalName">sygehuzbaelt</a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-translate="home">Home</a></li>
+                <li><a href="about.html" data-translate="about">About Us</a></li>
+                <li><a href="departments.html" data-translate="departments">Departments</a></li>
+                <li><a href="doctors.html" data-translate="doctors">Doctors</a></li>
+                <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                <li class="language-switcher">
+                    <select id="languageSwitcher">
+                        <option value="en">English</option>
+                        <option value="da">Dansk</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: linear-gradient(rgba(0, 102, 204, 0.75), rgba(0, 68, 153, 0.75)), url('images/hospital-building.jpg'); background-size: cover; background-position: center;">
+            <div class="hero-content">
+                <h1 data-translate="departmentsTitle">Our Medical Departments</h1>
+                <p class="hero-subtitle">Comprehensive Healthcare Services Across All Specialties</p>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--white);">
+            <div class="container">
+                <p class="section-subtitle" style="text-align: center; color: var(--gray); margin-bottom: 3rem; font-size: 1.1rem; max-width: 800px; margin-left: auto; margin-right: auto;">We offer a wide range of medical services through our specialized departments, each staffed with expert professionals and equipped with modern facilities.</p>
+                <div class="card-grid">
+                    <div class="card department-card">
+                        <img src="images/department-opd.jpg" alt="Outpatient Department" class="department-image">
+                        <h3 data-translate="opd">Outpatient Department (OPD)</h3>
+                        <p data-translate="opdDesc" style="font-weight: 500; color: var(--primary-blue);">General consultations and follow-up visits</p>
+                        <p style="margin-top: 1rem; color: var(--gray); line-height: 1.7;">Our OPD provides comprehensive outpatient services including general consultations, specialist referrals, and follow-up care. Open Monday to Saturday, 8 AM to 6 PM.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0; color: var(--gray); font-size: 0.9rem;"><strong>Hours:</strong> Mon-Sat, 8 AM - 6 PM</p>
+                        </div>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-pharmacy.jpg" alt="Pharmacy" class="department-image">
+                        <h3 data-translate="pharmacy">Pharmacy</h3>
+                        <p data-translate="pharmacyDesc" style="font-weight: 500; color: var(--primary-blue);">Complete range of medications and prescriptions</p>
+                        <p style="margin-top: 1rem; color: var(--gray); line-height: 1.7;">Fully stocked pharmacy with licensed pharmacists available to provide medication counseling and prescription services. Open 24/7 for emergency medications.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0; color: var(--gray); font-size: 0.9rem;"><strong>Hours:</strong> 24/7 Available</p>
+                        </div>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-laboratory.jpg" alt="Laboratory" class="department-image">
+                        <h3 data-translate="laboratory">Laboratory</h3>
+                        <p data-translate="laboratoryDesc" style="font-weight: 500; color: var(--primary-blue);">Advanced diagnostic and testing services</p>
+                        <p style="margin-top: 1rem; color: var(--gray); line-height: 1.7;">State-of-the-art laboratory facilities offering blood tests, imaging, pathology, and other diagnostic services with quick turnaround times.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0; color: var(--gray); font-size: 0.9rem;"><strong>Hours:</strong> Mon-Sat, 7 AM - 7 PM</p>
+                        </div>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-maternity.jpg" alt="Maternity Department" class="department-image">
+                        <h3 data-translate="maternity">Maternity</h3>
+                        <p data-translate="maternityDesc" style="font-weight: 500; color: var(--primary-blue);">Comprehensive maternal and newborn care</p>
+                        <p style="margin-top: 1rem; color: var(--gray); line-height: 1.7;">Complete maternity services including prenatal care, delivery, postnatal care, and neonatal intensive care unit (NICU) for newborns.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0; color: var(--gray); font-size: 0.9rem;"><strong>Hours:</strong> 24/7 Available</p>
+                        </div>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-emergency.jpg" alt="Emergency Department" class="department-image">
+                        <h3 data-translate="emergency">Emergency</h3>
+                        <p data-translate="emergencyDesc" style="font-weight: 500; color: var(--error);">24/7 emergency medical services</p>
+                        <p style="margin-top: 1rem; color: var(--gray); line-height: 1.7;">Round-the-clock emergency department staffed with experienced emergency physicians and equipped with advanced life support systems.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0; color: var(--error); font-size: 0.9rem; font-weight: bold;"><strong>Hours:</strong> 24/7 Emergency Service</p>
+                            <a href="tel:+453055477036" class="btn btn-danger" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.9rem;">Call Emergency</a>
+                        </div>
+                    </div>
+                    <div class="card department-card">
+                        <img src="images/department-surgery.jpg" alt="Surgery Department" class="department-image">
+                        <h3 data-translate="surgery">Surgery</h3>
+                        <p data-translate="surgeryDesc" style="font-weight: 500; color: var(--primary-blue);">Advanced surgical procedures and operations</p>
+                        <p style="margin-top: 1rem; color: var(--gray); line-height: 1.7;">Modern operating theaters with advanced surgical equipment for general surgery, orthopedic surgery, neurosurgery, and minimally invasive procedures.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                            <p style="margin: 0; color: var(--gray); font-size: 0.9rem;"><strong>Hours:</strong> By Appointment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> <span data-translate="hospitalName">sygehuzbaelt</span>. <span data-translate="allRightsReserved">All rights reserved.</span></p>
+        <a href="admin.html" class="admin-access" title="Doctor Login">⚕️</a>
+    </footer>
+
+    <a href="tel:+453055477036" class="emergency-btn" data-translate="emergency">🚑 Emergency</a>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="contactTitle">Contact - sygehuzbaelt</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" data-translate="hospitalName">sygehuzbaelt</a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-translate="home">Home</a></li>
+                <li><a href="about.html" data-translate="about">About Us</a></li>
+                <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                <li><a href="chat.html">Support Center</a></li>
+                <li class="language-switcher">
+                    <select id="languageSwitcher">
+                        <option value="en">English</option>
+                        <option value="da">Dansk</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: linear-gradient(rgba(0, 102, 204, 0.75), rgba(0, 68, 153, 0.75)), url('images/hospital-building.jpg'); background-size: cover; background-position: center;">
+            <div class="hero-content">
+                <h1 data-translate="contactTitle">Contact Us</h1>
+                <p class="hero-subtitle" data-translate="contactSubtitle">Get in touch with us - We're here to help</p>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--white);">
+            <div class="container">
+                <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="feature-card" style="text-align: left;">
+                        <div class="feature-icon-large">📍</div>
+                        <h3 data-translate="address">Address</h3>
+                        <p style="line-height: 1.8;">123 Medical Center Drive<br>
+                        Healthcare City, HC 12345<br>
+                        United States</p>
+                    </div>
+                    <div class="feature-card" style="text-align: left;">
+                        <div class="feature-icon-large">📞</div>
+                        <h3 data-translate="phone">Phone</h3>
+                        <p style="line-height: 1.8;">Main: <a href="tel:+453055477036" style="color: var(--primary-blue);">+45 30 55 47 70 36</a><br>
+                        Emergency: <a href="tel:+453055477036" style="color: var(--error); font-weight: bold;">+45 30 55 47 70 36</a><br>
+                        Fax: +1 (234) 567-8902</p>
+                    </div>
+                    <div class="feature-card" style="text-align: left;">
+                        <div class="feature-icon-large">✉️</div>
+                        <h3 data-translate="email">Email</h3>
+                        <p style="line-height: 1.8;"><a href="mailto:slillebaelt@gmail.com" style="color: var(--primary-blue);">slillebaelt@gmail.com</a></p>
+                    </div>
+                    <div class="feature-card" style="text-align: left;">
+                        <div class="feature-icon-large">🕐</div>
+                        <h3 data-translate="hours">Working Hours</h3>
+                        <p style="line-height: 1.8;">Monday - Friday: 8:00 AM - 6:00 PM<br>
+                        Saturday: 9:00 AM - 4:00 PM<br>
+                        Sunday: Emergency Only<br>
+                        <strong style="color: var(--error);">Emergency: 24/7</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background: var(--light-blue);">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                    <div class="form-container" style="margin: 0;">
+                        <div style="text-align: center; margin-bottom: 2rem;">
+                            <div style="font-size: 3rem; margin-bottom: 1rem;">💬</div>
+                            <h2 style="margin: 0; color: var(--primary-blue);" data-translate="sendMessage">Send Us a Message</h2>
+                            <p style="color: var(--gray); margin-top: 0.5rem;">Fill out the form below and we'll get back to you</p>
+                        </div>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="contactName" data-translate="name">
+                                    <span style="font-size: 1.2rem;">👤</span> Your Name
+                                </label>
+                                <input type="text" id="contactName" name="name" required placeholder="Enter your full name">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage" data-translate="message">
+                                    <span style="font-size: 1.2rem;">✉️</span> Your Message
+                                </label>
+                                <textarea id="contactMessage" name="message" rows="8" required placeholder="Type your message here..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem; font-size: 1.1rem;" data-translate="submit">
+                                📤 Send Message
+                            </button>
+                            <div style="background: var(--light-blue); padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+                                <p style="margin: 0; color: var(--dark-gray); font-size: 0.9rem;">
+                                    <strong>📧 Your message will be sent to:</strong><br>
+                                    <a href="mailto:slillebaelt@gmail.com" style="color: var(--primary-blue); font-weight: bold;">slillebaelt@gmail.com</a>
+                                </p>
+                                <p style="margin: 1rem 0 0 0; color: var(--dark-gray); font-size: 0.9rem;">
+                                    <strong>💬 Want to chat?</strong><br>
+                                    <a href="chat.html" style="color: var(--primary-blue); font-weight: bold; text-decoration: underline;">Open Chat Interface</a> to view your conversation and receive replies
+                                </p>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <div class="card" style="height: 100%;">
+                            <h3 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary-blue);">📍 Location Map</h3>
+                            <div style="width: 100%; height: 400px; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2259.756855002403!2d9.481817776258168!3d55.501762111299854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464c9f6d5c32ebab%3A0xd5c8120bb9eebc60!2sKolding%20Hospital!5e0!3m2!1sen!2sgh!4v1767268192950!5m2!1sen!2sgh" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                            <div style="margin-top: 1.5rem; padding: 1rem; background: var(--light-blue); border-radius: 8px;">
+                                <p style="margin: 0; color: var(--dark-gray);"><strong>Directions:</strong> Located in the heart of Healthcare City, easily accessible by public transport and with ample parking available.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> <span data-translate="hospitalName">sygehuzbaelt</span>. <span data-translate="allRightsReserved">All rights reserved.</span></p>
+        <a href="admin.html" class="admin-access" title="Doctor Login">⚕️</a>
+    </footer>
+
+    <a href="tel:+453055477036" class="emergency-btn" data-translate="emergency">🚑 Emergency</a>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

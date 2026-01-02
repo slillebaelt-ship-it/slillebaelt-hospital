@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate="patientRegistration">Patient Registration - sygehuzbaelt</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo" data-translate="hospitalName">sygehuzbaelt</a>
+            <ul class="nav-links">
+                <li><a href="index.html" data-translate="home">Home</a></li>
+                <li><a href="about.html" data-translate="about">About Us</a></li>
+                <li><a href="contact.html" data-translate="contact">Contact</a></li>
+                <li class="language-switcher">
+                    <select id="languageSwitcher">
+                        <option value="en">English</option>
+                        <option value="da">Dansk</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" style="background-image: linear-gradient(rgba(0, 102, 204, 0.75), rgba(0, 68, 153, 0.75)), url('images/hospital-building.jpg'); background-size: cover; background-position: center;">
+            <div class="hero-content">
+                <h1 data-translate="registerPatient">Register Patient</h1>
+                <p class="hero-subtitle">Join our healthcare system and get your unique Patient ID</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="form-container">
+                    <form id="patientRegistrationForm">
+                        <div class="form-group">
+                            <label for="patientName" data-translate="name">Name</label>
+                            <input type="text" id="patientName" name="name" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patientAge" data-translate="age">Age</label>
+                                <input type="number" id="patientAge" name="age" min="1" max="150" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patientGender" data-translate="gender">Gender</label>
+                                <select id="patientGender" name="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male" data-translate="male">Male</option>
+                                    <option value="Female" data-translate="female">Female</option>
+                                    <option value="Other" data-translate="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientPhone" data-translate="phoneNumber">Phone Number</label>
+                            <input type="tel" id="patientPhone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="patientAddress" data-translate="addressField">Address</label>
+                            <textarea id="patientAddress" name="address" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;" data-translate="register">Register</button>
+                    </form>
+                    
+                    <div id="registrationResult" style="margin-top: 2rem; display: none;">
+                        <div class="card" style="background: var(--light-blue);">
+                            <h3 data-translate="registrationSuccess">Patient registered successfully!</h3>
+                            <p><strong data-translate="patientId">Patient ID:</strong> <span id="generatedPatientId"></span></p>
+                            <p style="margin-top: 1rem; color: var(--gray);">Please save this Patient ID for future reference.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> <span data-translate="hospitalName">sygehuzbaelt</span>. <span data-translate="allRightsReserved">All rights reserved.</span></p>
+        <a href="admin.html" class="admin-access" title="Doctor Login">⚕️</a>
+    </footer>
+
+    <a href="tel:+453055477036" class="emergency-btn" data-translate="emergency">🚑 Emergency</a>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('patientRegistrationForm');
+            const resultDiv = document.getElementById('registrationResult');
+            
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                const formData = {
+                    name: document.getElementById('patientName').value,
+                    age: parseInt(document.getElementById('patientAge').value),
+                    gender: document.getElementById('patientGender').value,
+                    phone: document.getElementById('patientPhone').value,
+                    address: document.getElementById('patientAddress').value
+                };
+                
+                try {
+                    const result = await registerPatient(formData);
+                    if (result && result.patient_id) {
+                        document.getElementById('generatedPatientId').textContent = result.patient_id;
+                        resultDiv.style.display = 'block';
+                        form.reset();
+                        form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                } catch (error) {
+                    console.error('Registration error:', error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
