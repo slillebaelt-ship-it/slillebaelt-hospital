@@ -252,16 +252,18 @@
         <div class="chat-page-container">
             <div class="chat-header">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div>
+                    <div style="flex: 1;">
                         <h1>Support Center</h1>
                         <p>Get help and support from our team</p>
                     </div>
-                    <button onclick="refreshChat()" style="padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.2); color: white; border: 2px solid white; border-radius: 8px; cursor: pointer; font-size: 1rem;">
-                        🔄 Refresh
-                    </button>
-                    <button onclick="logout()" style="padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.2); color: white; border: 2px solid white; border-radius: 8px; cursor: pointer; font-size: 1rem;">
-                        🚪 Logout
-                    </button>
+                    <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                        <button onclick="refreshChat()" style="padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.2); color: white; border: 2px solid white; border-radius: 8px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'" title="Refresh conversations">
+                            🔄 Refresh
+                        </button>
+                        <button onclick="logout()" style="padding: 0.75rem 1.5rem; background: rgba(255,255,255,0.2); color: white; border: 2px solid white; border-radius: 8px; cursor: pointer; font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.3)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'" title="Logout">
+                            🚪 Logout
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -302,14 +304,14 @@
                             <p>Select a conversation or start a new one</p>
                         </div>
                         <div id="conversationView">
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 2px solid var(--light-gray); background: white; border-radius: 12px 12px 0 0;">
-                                <h3 style="margin: 0; color: var(--primary-blue);">💬 Conversation</h3>
+                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; border-bottom: 2px solid var(--light-gray); background: white; border-radius: 12px 12px 0 0; flex-wrap: wrap; gap: 0.75rem;">
+                                <h3 style="margin: 0; color: var(--primary-blue); flex: 1;">💬 Conversation</h3>
                                 <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                                    <button onclick="refreshChat()" style="padding: 0.5rem 1rem; background: var(--primary-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">
+                                    <button onclick="refreshChat()" style="padding: 0.6rem 1.2rem; background: var(--primary-blue); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem; transition: all 0.3s;" onmouseover="this.style.background='var(--dark-blue)'" onmouseout="this.style.background='var(--primary-blue)'" title="Refresh messages">
                                         🔄 Refresh
                                     </button>
-                                    <button onclick="clearCurrentConversation()" id="clearChatBtn" style="padding: 0.5rem 1rem; background: var(--error); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: none;">
-                                        🗑️ Clear Chat
+                                    <button onclick="clearCurrentConversation()" id="clearChatBtn" style="padding: 0.6rem 1.2rem; background: var(--error); color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; display: none; display: flex; align-items: center; gap: 0.4rem; transition: all 0.3s;" onmouseover="this.style.background='#c82333'" onmouseout="this.style.background='var(--error)'" title="Clear this conversation">
+                                        🗑️ Clear
                                     </button>
                                 </div>
                             </div>

@@ -320,10 +320,13 @@
             <div class="container" style="max-width: 100%; width: 100%; padding: 1rem; box-sizing: border-box;">
                 <div style="margin-bottom: 2rem; background: var(--light-blue); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary-blue); max-width: 100%; box-sizing: border-box;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
-                        <h1 style="margin: 0;">Support Center - Admin Panel</h1>
-                        <div style="display: flex; gap: 1rem;">
-                            <button onclick="clearAllChat()" class="btn" style="padding: 0.75rem 1.5rem; background: var(--error); color: white;">
-                                🗑️ Clear All Chat
+                        <h1 style="margin: 0; flex: 1;">Support Center - Admin Panel</h1>
+                        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <button onclick="loadMessages()" class="btn" style="padding: 0.75rem 1.5rem; background: var(--primary-blue); color: white; display: flex; align-items: center; gap: 0.5rem;" title="Refresh conversations">
+                                🔄 Refresh
+                            </button>
+                            <button onclick="clearAllChat()" class="btn" style="padding: 0.75rem 1.5rem; background: var(--error); color: white; display: flex; align-items: center; gap: 0.5rem;" title="Clear all conversations">
+                                🗑️ Clear All
                             </button>
                         </div>
                     </div>
@@ -339,7 +342,12 @@
                 <div class="chat-container">
                     <!-- Messages List (Left Sidebar - WhatsApp style) -->
                     <div class="messages-list">
-                        <div class="messages-list-header">💬 Support Requests</div>
+                        <div class="messages-list-header" style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>💬 Support Requests</span>
+                            <button onclick="loadMessages()" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); color: white; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 0.3rem;" title="Refresh conversations">
+                                🔄
+                            </button>
+                        </div>
                         <div class="messages-list-content">
                             <div id="messagesListContainer">
                                 <div class="text-center" style="padding: 2rem; color: var(--gray);">Loading conversations...</div>
