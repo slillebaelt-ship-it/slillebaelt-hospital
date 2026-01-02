@@ -685,12 +685,12 @@ app.get('/api/stats', (req, res) => {
           db.get('SELECT COUNT(*) as count FROM messages WHERE status = ?', ['unread'], (err, row) => {
             if (err) return res.status(500).json({ error: 'Database error' });
             stats.unreadMessages = row.count;
-            res.json(stats);
-          });
+          res.json(stats);
         });
       });
     });
   });
+});
 });
 
 // Get patient conversations by name and age
@@ -791,6 +791,7 @@ async function checkForEmailReplies() {
     
     // Check SENT folder - this is where doctor replies go when they reply to patient emails
     let allMessages = [];
+    let isInSentFolder = false; // Track which folder we're using
     const fetchOptions = {
       bodies: '',
       struct: true
@@ -798,6 +799,7 @@ async function checkForEmailReplies() {
     
     try {
       await connection.openBox('[Gmail]/Sent Mail');
+      isInSentFolder = true; // We're in the SENT folder
       console.log('✅ Connected to Gmail SENT folder (where doctor replies are)');
       
       // Search for all recent sent emails - check last 24 hours first (most recent)
@@ -823,6 +825,7 @@ async function checkForEmailReplies() {
         console.log(`   Prioritizing ${convMessages.length} emails with CONV- in subject`);
       }
     } catch (sentError) {
+      isInSentFolder = false; // We're in INBOX, not SENT folder
       console.log('⚠️ Could not open SENT folder, trying INBOX instead...');
       console.log(`   Error: ${sentError.message}`);
       await connection.openBox('INBOX');
@@ -1152,14 +1155,19 @@ if (config.SMTP_CONFIG && config.SMTP_CONFIG.auth && config.SMTP_CONFIG.auth.pas
   console.log('📬 Email reply checking not available - password not configured');
 }
 
-// Start Server
+// Start Server (only if not in serverless environment)
+if (process.env.VERCEL !== '1') {
 app.listen(PORT, () => {
   console.log(`Hospital website server running on http://localhost:${PORT}`);
-  console.log(`\n📧 Email Status: ${transporter ? '✅ Configured' : '❌ Not configured'}`);
-  if (transporter) {
-    console.log(`   Sending to: ${config.HOSPITAL_EMAIL}`);
-    console.log(`   Test email endpoint: http://localhost:${PORT}/api/test-email`);
-  }
+    console.log(`\n📧 Email Status: ${transporter ? '✅ Configured' : '❌ Not configured'}`);
+    if (transporter) {
+      console.log(`   Sending to: ${config.HOSPITAL_EMAIL}`);
+      console.log(`   Test email endpoint: http://localhost:${PORT}/api/test-email`);
+    }
 });
+}
+
+// Export app for Vercel serverless functions
+module.exports = app;
 
 
