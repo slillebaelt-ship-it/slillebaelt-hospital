@@ -237,10 +237,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize mobile menu
   initMobileMenu();
   
-  // Set current year in footer
+  // Set copyright year in footer
   const yearElement = document.getElementById('currentYear');
   if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
+    yearElement.textContent = '2020';
   }
   
   // Handle contact form
