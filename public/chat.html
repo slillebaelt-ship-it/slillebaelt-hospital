@@ -143,8 +143,87 @@
             border-radius: 8px;
         }
         @media (max-width: 768px) {
+            .chat-page-container {
+                max-width: 100%;
+                width: 100%;
+                padding: 0.5rem;
+                margin: 1rem auto;
+            }
             .chat-container {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+                width: 100%;
+                max-width: 100%;
+            }
+            .chat-header {
+                padding: 1.5rem 1rem;
+                font-size: 1.5rem;
+            }
+            .chat-header h1 {
+                font-size: 1.5rem;
+            }
+            .conversations-list {
+                max-height: 300px;
+                width: 100%;
+                padding: 0.75rem;
+            }
+            .chat-view {
+                max-height: 500px;
+                width: 100%;
+                padding: 1rem;
+            }
+            .message-bubble {
+                max-width: 85%;
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+            .chat-input-form {
+                padding: 0.75rem 0;
+            }
+            .chat-input-form input {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 0.75rem;
+            }
+            .chat-input-form button {
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chat-page-container {
+                padding: 0.25rem;
+                margin: 0.5rem auto;
+            }
+            .chat-header {
+                padding: 1rem 0.75rem;
+                margin-bottom: 1rem;
+            }
+            .chat-header h1 {
+                font-size: 1.25rem;
+            }
+            .conversations-list {
+                max-height: 250px;
+                padding: 0.5rem;
+            }
+            .conversation-item {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+            }
+            .chat-view {
+                max-height: 450px;
+                padding: 0.75rem;
+            }
+            .message-bubble {
+                max-width: 90%;
+                padding: 0.6rem;
+                font-size: 0.85rem;
+            }
+            .chat-input-form input {
+                padding: 0.6rem;
+            }
+            .chat-input-form button {
+                padding: 0.6rem 1rem;
             }
         }
     </style>

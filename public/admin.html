@@ -181,6 +181,16 @@
                 grid-template-columns: 1fr;
                 height: calc(100vh - 200px);
                 min-height: 500px;
+                max-width: 100%;
+                width: 100%;
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+            .container {
+                padding: 1rem;
+                max-width: 100%;
+                width: 100%;
             }
             .messages-list {
                 max-height: 40vh;
@@ -190,18 +200,33 @@
             .chat-view {
                 height: 60vh;
                 min-height: 400px;
+                width: 100%;
+                max-width: 100%;
             }
             .chat-message {
                 padding: 1rem;
+                width: 100%;
+                box-sizing: border-box;
             }
             .chat-header {
                 padding: 1rem;
+                width: 100%;
+                box-sizing: border-box;
             }
             #replyFormSection {
                 padding: 0.75rem 1rem;
+                width: 100%;
+                box-sizing: border-box;
             }
             #directReplyText {
                 font-size: 16px; /* Prevents zoom on iOS */
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .message-item {
+                padding: 1rem;
+                width: 100%;
+                box-sizing: border-box;
             }
         }
         
@@ -210,19 +235,38 @@
                 height: calc(100vh - 180px);
                 min-height: 450px;
                 border-radius: 0;
+                max-width: 100vw;
+                width: 100vw;
+                margin: 0;
+            }
+            .container {
+                padding: 0.5rem;
+                max-width: 100vw;
+                width: 100%;
             }
             .messages-list {
                 max-height: 35vh;
+                width: 100%;
             }
             .chat-view {
                 height: 65vh;
                 min-height: 350px;
+                width: 100%;
             }
             .message-item {
-                padding: 1rem;
+                padding: 0.75rem;
+                font-size: 0.9rem;
             }
             .chat-header h2 {
                 font-size: 1rem;
+            }
+            .chat-message {
+                padding: 0.75rem;
+            }
+            #messageViewContent {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                max-width: 100%;
             }
         }
     </style>
@@ -271,8 +315,8 @@
 
         <!-- Chat Interface -->
         <div id="chatSection" class="section" style="display: none;">
-            <div class="container">
-                <div style="margin-bottom: 2rem; background: var(--light-blue); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+            <div class="container" style="max-width: 100%; width: 100%; padding: 1rem; box-sizing: border-box;">
+                <div style="margin-bottom: 2rem; background: var(--light-blue); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--primary-blue); max-width: 100%; box-sizing: border-box;">
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 1rem;">
                         <h1 style="margin: 0;">Support Center - Admin Panel</h1>
                         <div style="display: flex; gap: 1rem;">
