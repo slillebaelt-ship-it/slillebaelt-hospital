@@ -140,7 +140,9 @@ async function loadMessages() {
 }
 
 function selectConversation(conversationId) {
+  console.log('📋 Selecting conversation:', conversationId);
   currentMessageId = conversationId;
+  window.currentConversationIdForReply = conversationId;
   loadConversationDetails(conversationId);
   loadMessages(); // Refresh to update active state
 }
@@ -403,9 +405,14 @@ async function sendDirectReply(event) {
   }
   
   if (!conversationId) {
-      showNotification('Select conversation', 'error');
+    showNotification('Select conversation', 'error');
     return;
   }
+  
+  console.log('📤 Sending reply:', {
+    conversation_id: conversationId,
+    message_length: replyText.length
+  });
   
   try {
     showNotification('Sending...', 'success');
@@ -423,8 +430,13 @@ async function sendDirectReply(event) {
     
     if (!response.ok) {
       const errorMsg = data.error || data.details || 'Failed to send reply';
-      console.error('Reply error:', errorMsg);
-      showNotification(errorMsg, 'error');
+      console.error('❌ Reply error:', {
+        status: response.status,
+        error: errorMsg,
+        conversation_id: conversationId,
+        hint: data.hint || ''
+      });
+      showNotification(errorMsg + (data.hint ? ' - ' + data.hint : ''), 'error');
       return;
     }
     

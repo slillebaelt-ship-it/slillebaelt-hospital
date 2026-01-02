@@ -648,18 +648,50 @@ app.post('/api/test-reply', (req, res) => {
   // Get hospital email from config or use default
   const hospitalEmail = (config && config.HOSPITAL_EMAIL) || 'doctor@hospital.com';
   
+  // Debug: Log all conversations to help diagnose
+  db.all('SELECT DISTINCT conversation_id FROM messages LIMIT 10', (debugErr, allConvs) => {
+    if (!debugErr && allConvs) {
+      console.log('📋 Available conversations:', allConvs.map(c => c.conversation_id));
+    }
+  });
+  
   // Verify conversation exists
   db.get('SELECT * FROM messages WHERE conversation_id = ? LIMIT 1', [conversation_id], (err, exists) => {
     if (err) {
       console.error('❌ Database error checking conversation:', err);
       console.error('   Error code:', err.code);
       console.error('   Error message:', err.message);
+      console.error('   Looking for conversation_id:', conversation_id);
       return res.status(500).json({ success: false, error: 'Database error', details: err.message });
     }
     
     if (!exists) {
       console.error(`❌ Conversation not found: ${conversation_id}`);
-      return res.status(404).json({ success: false, error: 'Conversation not found' });
+      console.error('   Searching for similar conversations...');
+      
+      // Try to find any message with similar conversation_id (case-insensitive or partial match)
+      db.all('SELECT conversation_id FROM messages WHERE conversation_id LIKE ? LIMIT 5', 
+        [`%${conversation_id.substring(Math.max(0, conversation_id.length - 8))}%`], 
+        (searchErr, similar) => {
+          if (!searchErr && similar && similar.length > 0) {
+            console.error('   Found similar conversation IDs:', similar.map(s => s.conversation_id));
+          }
+        }
+      );
+      
+      // Check if there are any messages at all
+      db.get('SELECT COUNT(*) as count FROM messages', (countErr, countRow) => {
+        if (!countErr) {
+          console.error(`   Total messages in database: ${countRow.count}`);
+        }
+      });
+      
+      return res.status(404).json({ 
+        success: false, 
+        error: 'Conversation not found',
+        conversation_id: conversation_id,
+        hint: 'The conversation may have been cleared or the database was reset'
+      });
     }
     
     // Save the reply
