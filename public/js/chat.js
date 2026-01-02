@@ -152,14 +152,27 @@ async function loadConversationDetails(conversationId) {
     const response = await fetch(`/api/conversation/${conversationId}`);
     const messages = await response.json();
     
-    if (messages.length === 0) return;
+    if (messages.length === 0) {
+      console.log('No messages found for conversation:', conversationId);
+      return;
+    }
     
     const patientMessage = messages.find(m => m.sender_type === 'patient') || messages[0];
     
-    document.getElementById('noMessageSelected').style.display = 'none';
+    // Hide "no message selected" and show the chat view
+    const noMessageSelected = document.getElementById('noMessageSelected');
     const messageView = document.getElementById('messageView');
+    
+    if (noMessageSelected) {
+      noMessageSelected.style.display = 'none';
+    }
+    
     if (messageView) {
       messageView.style.display = 'flex';
+      messageView.style.width = '100%';
+      messageView.style.height = '100%';
+    } else {
+      console.error('messageView element not found!');
     }
     
     document.getElementById('messageViewName').textContent = patientMessage.name;
