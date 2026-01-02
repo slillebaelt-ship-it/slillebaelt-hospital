@@ -179,10 +179,50 @@
         @media (max-width: 768px) {
             .chat-container {
                 grid-template-columns: 1fr;
-                height: auto;
+                height: calc(100vh - 200px);
+                min-height: 500px;
             }
             .messages-list {
-                max-height: 300px;
+                max-height: 40vh;
+                border-right: none;
+                border-bottom: 2px solid var(--light-gray);
+            }
+            .chat-view {
+                height: 60vh;
+                min-height: 400px;
+            }
+            .chat-message {
+                padding: 1rem;
+            }
+            .chat-header {
+                padding: 1rem;
+            }
+            #replyFormSection {
+                padding: 0.75rem 1rem;
+            }
+            #directReplyText {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .chat-container {
+                height: calc(100vh - 180px);
+                min-height: 450px;
+                border-radius: 0;
+            }
+            .messages-list {
+                max-height: 35vh;
+            }
+            .chat-view {
+                height: 65vh;
+                min-height: 350px;
+            }
+            .message-item {
+                padding: 1rem;
+            }
+            .chat-header h2 {
+                font-size: 1rem;
             }
         }
     </style>
@@ -191,6 +231,7 @@
     <header>
         <nav>
             <a href="index.html" class="logo" data-translate="hospitalName">sygehuzbaelt</a>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
             <ul class="nav-links">
                 <li><a href="index.html" data-translate="home">Home</a></li>
                 <li><a href="about.html" data-translate="about">About Us</a></li>

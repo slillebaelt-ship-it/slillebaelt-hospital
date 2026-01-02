@@ -192,8 +192,45 @@ async function logout() {
   }
 }
 
+// Mobile Menu Toggle
+function initMobileMenu() {
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      // Change icon
+      if (navLinks.classList.contains('active')) {
+        menuToggle.innerHTML = '✕';
+      } else {
+        menuToggle.innerHTML = '☰';
+      }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
+        navLinks.classList.remove('active');
+        menuToggle.innerHTML = '☰';
+      }
+    });
+    
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.innerHTML = '☰';
+      });
+    });
+  }
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize mobile menu
+  initMobileMenu();
+  
   // Set current year in footer
   const yearElement = document.getElementById('currentYear');
   if (yearElement) {

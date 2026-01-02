@@ -45,6 +45,22 @@ nav {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--white);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.menu-toggle:hover {
+  opacity: 0.8;
 }
 
 .logo {
@@ -60,6 +76,10 @@ nav {
   gap: 2rem;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.nav-links.active {
+  display: flex;
 }
 
 .nav-links a {
@@ -703,11 +723,42 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  
   .nav-links {
+    display: none;
     flex-direction: column;
     width: 100%;
     gap: 1rem;
     margin-top: 1rem;
+    padding: 1rem 0;
+    background: rgba(0, 68, 153, 0.95);
+    border-radius: 8px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  
+  .nav-links.active {
+    display: flex;
+  }
+  
+  .nav-links li {
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-links a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 0;
   }
   
   .hero {
