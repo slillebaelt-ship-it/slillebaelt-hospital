@@ -198,57 +198,34 @@ function initMobileMenu() {
   const navLinks = document.querySelector('.nav-links');
   
   if (menuToggle && navLinks) {
-    // Function to close menu
-    function closeMenu() {
-      navLinks.classList.remove('active');
-      menuToggle.innerHTML = '☰';
-    }
-    
-    // Toggle menu function
-    function toggleMenu() {
-      const isActive = navLinks.classList.contains('active');
-      if (isActive) {
-        closeMenu();
-      } else {
-        navLinks.classList.add('active');
-        menuToggle.innerHTML = '✕';
-      }
-    }
-    
-    // Handle hamburger button click
     menuToggle.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      toggleMenu();
+      navLinks.classList.toggle('active');
+      // Change icon
+      if (navLinks.classList.contains('active')) {
+        menuToggle.innerHTML = '✕';
+      } else {
+        menuToggle.innerHTML = '☰';
+      }
     });
     
-    // Close menu when clicking any link - use mousedown for faster response
-    navLinks.querySelectorAll('a').forEach(link => {
-      // Use mousedown to close before navigation
-      link.addEventListener('mousedown', () => {
-        closeMenu();
-      });
-      // Also handle click as backup
-      link.addEventListener('click', () => {
-        closeMenu();
-      });
-    });
-    
-    // Close menu when clicking outside
+    // Close menu when clicking outside (with delay to avoid conflicts)
     document.addEventListener('click', (e) => {
       if (navLinks.classList.contains('active')) {
-        // Check if click is outside menu and toggle button
         if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-          closeMenu();
+          navLinks.classList.remove('active');
+          menuToggle.innerHTML = '☰';
         }
       }
     });
     
-    // Close menu on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-        closeMenu();
-      }
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        menuToggle.innerHTML = '☰';
+      });
     });
   } else {
     console.log('Menu toggle elements not found:', { menuToggle, navLinks });
