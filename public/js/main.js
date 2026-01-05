@@ -198,21 +198,40 @@ function initMobileMenu() {
   const navLinks = document.querySelector('.nav-links');
   
   if (menuToggle && navLinks) {
+    // Toggle menu function
+    function toggleMenu() {
+      const isActive = navLinks.classList.contains('active');
+      if (isActive) {
+        navLinks.classList.remove('active');
+        menuToggle.innerHTML = '☰';
+      } else {
+        navLinks.classList.add('active');
+        menuToggle.innerHTML = '✕';
+      }
+    }
+    
+    // Handle hamburger button click
     menuToggle.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      navLinks.classList.toggle('active');
-      // Change icon
-      if (navLinks.classList.contains('active')) {
-        menuToggle.innerHTML = '✕';
-      } else {
-        menuToggle.innerHTML = '☰';
-      }
+      toggleMenu();
     });
     
-    // Close menu when clicking outside (with delay to avoid conflicts)
+    // Close menu when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        // Small delay to allow navigation
+        setTimeout(() => {
+          navLinks.classList.remove('active');
+          menuToggle.innerHTML = '☰';
+        }, 100);
+      });
+    });
+    
+    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
       if (navLinks.classList.contains('active')) {
+        // Check if click is outside menu and toggle button
         if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
           navLinks.classList.remove('active');
           menuToggle.innerHTML = '☰';
@@ -220,12 +239,12 @@ function initMobileMenu() {
       }
     });
     
-    // Close menu when clicking a link
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
+    // Close menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('active')) {
         navLinks.classList.remove('active');
         menuToggle.innerHTML = '☰';
-      });
+      }
     });
   } else {
     console.log('Menu toggle elements not found:', { menuToggle, navLinks });
