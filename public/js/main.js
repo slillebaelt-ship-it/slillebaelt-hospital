@@ -198,12 +198,17 @@ function initMobileMenu() {
   const navLinks = document.querySelector('.nav-links');
   
   if (menuToggle && navLinks) {
+    // Function to close menu
+    function closeMenu() {
+      navLinks.classList.remove('active');
+      menuToggle.innerHTML = '☰';
+    }
+    
     // Toggle menu function
     function toggleMenu() {
       const isActive = navLinks.classList.contains('active');
       if (isActive) {
-        navLinks.classList.remove('active');
-        menuToggle.innerHTML = '☰';
+        closeMenu();
       } else {
         navLinks.classList.add('active');
         menuToggle.innerHTML = '✕';
@@ -217,14 +222,15 @@ function initMobileMenu() {
       toggleMenu();
     });
     
-    // Close menu when clicking a link
+    // Close menu when clicking any link - use mousedown for faster response
     navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        // Small delay to allow navigation
-        setTimeout(() => {
-          navLinks.classList.remove('active');
-          menuToggle.innerHTML = '☰';
-        }, 100);
+      // Use mousedown to close before navigation
+      link.addEventListener('mousedown', () => {
+        closeMenu();
+      });
+      // Also handle click as backup
+      link.addEventListener('click', () => {
+        closeMenu();
       });
     });
     
@@ -233,8 +239,7 @@ function initMobileMenu() {
       if (navLinks.classList.contains('active')) {
         // Check if click is outside menu and toggle button
         if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-          navLinks.classList.remove('active');
-          menuToggle.innerHTML = '☰';
+          closeMenu();
         }
       }
     });
@@ -242,8 +247,7 @@ function initMobileMenu() {
     // Close menu on escape key
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        menuToggle.innerHTML = '☰';
+        closeMenu();
       }
     });
   } else {
