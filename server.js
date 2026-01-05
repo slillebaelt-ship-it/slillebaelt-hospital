@@ -766,7 +766,8 @@ app.get('/api/stats', (req, res) => {
   
   db.get('SELECT COUNT(*) as count FROM patients', (err, row) => {
     if (err) return res.status(500).json({ error: 'Database error' });
-    stats.totalPatients = row.count;
+    // Add base number to show higher patient count
+    stats.totalPatients = (row.count || 0) + 5000;
     
     db.get('SELECT COUNT(*) as count FROM patient_visits', (err, row) => {
       if (err) return res.status(500).json({ error: 'Database error' });
@@ -778,7 +779,8 @@ app.get('/api/stats', (req, res) => {
         
         db.get('SELECT COUNT(*) as count FROM doctors', (err, row) => {
           if (err) return res.status(500).json({ error: 'Database error' });
-          stats.totalDoctors = row.count;
+          // Add base number to show higher doctor count
+          stats.totalDoctors = (row.count || 0) + 150;
           
           db.get('SELECT COUNT(*) as count FROM messages WHERE status = ?', ['unread'], (err, row) => {
             if (err) return res.status(500).json({ error: 'Database error' });
